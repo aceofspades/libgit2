@@ -10,10 +10,20 @@ compiler:
 # Settings to try
 env:
  global:
-  - secure: "YnhS+8n6B+uoyaYfaJ3Lei7cSJqHDPiKJCKFIF2c87YDfmCvAJke8QtE7IzjYDs7UFkTCM4ox+ph2bERUrxZbSCyEkHdjIZpKuMJfYWja/jgMqTMxdyOH9y8JLFbZsSXDIXDwqBlC6vVyl1fP90M35wuWcNTs6tctfVWVofEFbs="
+   # COVERITY_SCAN_TOKEN
+   - secure: "dp7Qh4jOVhBls5vswfoGK4oDVK3529YhR/hFSR/MpFI9mQhbfMaIDMOHfmscyfOkbBFDqDQ2k7TN9kgEjJZtcRKrQRVKgPKU6CyU11Ff1uQt/pYsiVwL17SXuIucZqSSSzBH9gHxkU6Qzef4gu9lJDmUrwbXi4RI78a6WrQusEo="
  matrix:
   - OPTIONS="-DTHREADSAFE=ON -DCMAKE_BUILD_TYPE=Release"
   - OPTIONS="-DBUILD_CLAR=ON -DBUILD_EXAMPLES=ON"
+
+addons:
+  coverity_scan:
+    project:
+      name: libgit2
+      version: 0.0
+      description: The Git linkable library
+    email: nobody@nowhere.com
+    build_command: cmake --build .
 
 matrix:
  fast_finish: true
