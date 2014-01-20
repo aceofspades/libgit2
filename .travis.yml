@@ -5,35 +5,36 @@ language: c
 
 compiler:
   - gcc
-  - clang
+#  - clang
 
 # Settings to try
 env:
  global:
    # COVERITY_SCAN_TOKEN
    - secure: "dp7Qh4jOVhBls5vswfoGK4oDVK3529YhR/hFSR/MpFI9mQhbfMaIDMOHfmscyfOkbBFDqDQ2k7TN9kgEjJZtcRKrQRVKgPKU6CyU11Ff1uQt/pYsiVwL17SXuIucZqSSSzBH9gHxkU6Qzef4gu9lJDmUrwbXi4RI78a6WrQusEo="
- matrix:
-  - OPTIONS="-DTHREADSAFE=ON -DCMAKE_BUILD_TYPE=Release"
-  - OPTIONS="-DBUILD_CLAR=ON -DBUILD_EXAMPLES=ON"
+# matrix:
+#  - OPTIONS="-DTHREADSAFE=ON -DCMAKE_BUILD_TYPE=Release"
+#  - OPTIONS="-DBUILD_CLAR=ON -DBUILD_EXAMPLES=ON"
 
 addons:
   coverity_scan:
     project:
-      name: libgit2
+      name: aceofspades/libgit2
+      slug: aceofspades/libgit2
       version: 0.0
       description: The Git linkable library
     email: nobody@nowhere.com
     build_command: cmake --build .
+    branch_pattern: coverity_scan
+    build_script_url: https://gist.github.com/aceofspades/4bd0dd25f2cbfde5093c/raw
 
-matrix:
- fast_finish: true
- include:
-   - compiler: i586-mingw32msvc-gcc
-     env: OPTIONS="-DBUILD_CLAR=OFF -DWIN32=ON -DMINGW=ON"
-   - compiler: gcc
-     env: COVERITY=1
- allow_failures:
-   - env: COVERITY=1
+#matrix:
+# fast_finish: true
+# include:
+#   - compiler: i586-mingw32msvc-gcc
+#     env: OPTIONS="-DBUILD_CLAR=OFF -DWIN32=ON -DMINGW=ON"
+#   - compiler: gcc
+# allow_failures:
 
 install:
  - sudo apt-get -qq update
@@ -44,14 +45,15 @@ script:
  - script/cibuild.sh
 
 # Run Tests
-after_success:
- - sudo apt-get -qq install valgrind
- - valgrind --leak-check=full --show-reachable=yes --suppressions=./libgit2_clar.supp _build/libgit2_clar -ionline
+#after_success:
+# - sudo apt-get -qq install valgrind
+# - valgrind --leak-check=full --show-reachable=yes --suppressions=./libgit2_clar.supp _build/libgit2_clar -ionline
 
-# Only watch the development branch
+# Only watch the development and coverity_scan branches
 branches:
  only:
    - development
+   - coverity_scan
 
 # Notify development list when needed
 notifications:
