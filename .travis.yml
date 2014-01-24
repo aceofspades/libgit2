@@ -56,8 +56,9 @@ script:
 # Only watch the development and coverity_scan branches
 branches:
  only:
-   - development
+   #- development
    - coverity_scan
+   - test
 
 # Notify development list when needed
 notifications:
