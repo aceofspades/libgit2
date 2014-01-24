@@ -9,10 +9,10 @@ compiler:
 
 # Settings to try
 env:
+ - PROJECT_NAME="aceofspades/libgit2"
+ # COVERITY_SCAN_TOKEN
+ - secure: "dp7Qh4jOVhBls5vswfoGK4oDVK3529YhR/hFSR/MpFI9mQhbfMaIDMOHfmscyfOkbBFDqDQ2k7TN9kgEjJZtcRKrQRVKgPKU6CyU11Ff1uQt/pYsiVwL17SXuIucZqSSSzBH9gHxkU6Qzef4gu9lJDmUrwbXi4RI78a6WrQusEo="
  global:
-   - PROJECT_NAME="aceofspades/libgit2"
-   # COVERITY_SCAN_TOKEN
-   - secure: "dp7Qh4jOVhBls5vswfoGK4oDVK3529YhR/hFSR/MpFI9mQhbfMaIDMOHfmscyfOkbBFDqDQ2k7TN9kgEjJZtcRKrQRVKgPKU6CyU11Ff1uQt/pYsiVwL17SXuIucZqSSSzBH9gHxkU6Qzef4gu9lJDmUrwbXi4RI78a6WrQusEo="
 # matrix:
 #  - OPTIONS="-DTHREADSAFE=ON -DCMAKE_BUILD_TYPE=Release"
 #  - OPTIONS="-DBUILD_CLAR=ON -DBUILD_EXAMPLES=ON"
