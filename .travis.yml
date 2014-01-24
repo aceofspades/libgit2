@@ -44,8 +44,9 @@ install:
 # Run the Build script and tests
 script:
 # - script/cibuild.sh
-  - echo 'testing 1'
-  - echo 'testing 2'
+  - uname -a
+  - ls -la /bin/sh
+  - env
 
 # Run Tests
 #after_success:
