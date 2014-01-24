@@ -45,7 +45,7 @@ install:
 script:
 # - script/cibuild.sh
   - uname -a
-  - echo "shell: $0"
+  - echo $0
   - ls -la /bin/sh
   - env
 
