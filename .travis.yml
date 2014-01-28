@@ -43,11 +43,11 @@ install:
 
 # Run the Build script and tests
 script:
-  - script/cibuild.sh
+#  - script/cibuild.sh
 #  - uname -a
 #  - cat $0
 #  - ls -la /bin/sh
-#  - env
+  - env
 
 # Run Tests
 #after_success:
