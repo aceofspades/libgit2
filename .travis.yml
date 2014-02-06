@@ -10,6 +10,7 @@ compiler:
 env:
   global:
   - PROJECT_NAME="aceofspades/libgit2"
+  - COVERITY_VERBOSE=1
   # COVERITY_SCAN_TOKEN via "travis encrypt" using the repo's public key
   - secure: "MixjiXqN5ckgTDGydYC3a0xLFOTcJOrfQiU4x47HF87WzdcnTQgPGP51r4wVL13JWKSbzrE+bmHJ3gItewhnvkaSu3SGHZGZZX+Pma5sgJtqv6cLkjwC9ceMhjJVANWoFoblbyI9tMUoBcABqxE1mBts6rtJnLyC6aqFDvSHqMY="
 
