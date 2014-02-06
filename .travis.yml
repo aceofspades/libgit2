@@ -3,32 +3,28 @@
 
 language: c
 
-#compiler:
-#  - gcc
+compiler:
+  - gcc
 #  - clang
 
 env:
   global:
-    - STANDARD_BUILD_COMMAND="script/cibuild.sh"
+  - PROJECT_NAME="aceofspades/libgit2"
+  # COVERITY_SCAN_TOKEN via "travis encrypt" using the repo's public key
+  - secure: "MixjiXqN5ckgTDGydYC3a0xLFOTcJOrfQiU4x47HF87WzdcnTQgPGP51r4wVL13JWKSbzrE+bmHJ3gItewhnvkaSu3SGHZGZZX+Pma5sgJtqv6cLkjwC9ceMhjJVANWoFoblbyI9tMUoBcABqxE1mBts6rtJnLyC6aqFDvSHqMY="
 
-    # -- BEGIN Coverity Scan env
-    - PROJECT_NAME="aceofspades/libgit2"
-    - OWNER_EMAIL="scan-admin@coverity.com"
-    - COVERITY_SCAN_BRANCH_PATTERN="coverity_scan"
-    #- COVERITY_SCAN_BUILD_URL="http://scan.coverity.com/scripts/travisci_build_coverity_scan.sh"
-    - COVERITY_SCAN_BUILD_URL="https://gist.github.com/aceofspades/4bd0dd25f2cbfde5093c/raw"
-    - COVERITY_SCAN_BUILD_COMMAND_PREPEND="mkdir -p _build && cd _build && cmake .. -DTHREADSAFE=ON"
-    - COVERITY_SCAN_BUILD_COMMAND="cmake --build ."
-    - COVERITY_SCAN_BUILD="curl -s $COVERITY_SCAN_BUILD_URL | bash"
+addons:
+  coverity_scan:
+    project:
+      name: "aceofspades/libgit2"
+      description: "Your project description here"
+    email: "scan-admin@coverity.com"
+    build_command_prepend: "mkdir -p _build && cd _build && cmake .. -DTHREADSAFE=ON"
+    build_command: "cmake --build ."
+    branch_pattern: coverity_scan
 
-    # COVERITY_SCAN_TOKEN via "travis encrypt" using the repo's public key
-    - secure: "MixjiXqN5ckgTDGydYC3a0xLFOTcJOrfQiU4x47HF87WzdcnTQgPGP51r4wVL13JWKSbzrE+bmHJ3gItewhnvkaSu3SGHZGZZX+Pma5sgJtqv6cLkjwC9ceMhjJVANWoFoblbyI9tMUoBcABqxE1mBts6rtJnLyC6aqFDvSHqMY="
-
-    # -- END Coverity Scan env
-
-
-  matrix:
-    - COVERITY_SCAN=1
+#  matrix:
+#    - COVERITY_SCAN=1
 #   - OPTIONS="-DTHREADSAFE=ON -DCMAKE_BUILD_TYPE=Release"
 #   - OPTIONS="-DBUILD_CLAR=ON -DBUILD_EXAMPLES=ON"
 
@@ -49,8 +45,7 @@ install:
 
 # Run the Build script and tests
 script:
-  # Refer to STANDARD_BUILD_COMMAND above
-  - if [ "${COVERITY_SCAN}" = '1' ]; then eval "$COVERITY_SCAN_BUILD"; else eval "$STANDARD_BUILD_COMMAND"; fi
+  - script/cibuild.sh
 
 # Run Tests
 after_success:
