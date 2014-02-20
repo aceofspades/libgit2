@@ -10,7 +10,6 @@ compiler:
 env:
   global:
   - PROJECT_NAME="aceofspades/libgit2"
-  - COVERITY_VERBOSE=1
   - TRAVIS_TEST_RESULT=0
   - OWNER_EMAIL=nobody@nowhere.com
   # COVERITY_SCAN_TOKEN via "travis encrypt" using the repo's public key
@@ -18,10 +17,11 @@ env:
 
 addons:
   coverity_scan:
+    build_script_url: https://gist.githubusercontent.com/aceofspades/4bd0dd25f2cbfde5093c/raw
     project:
       name: "aceofspades/libgit2"
       description: "Your project description here"
-    email: "scan-admin@coverity.com"
+    notification_email: "scan-admin@coverity.com"
     build_command_prepend: "mkdir -p _build && cd _build && cmake .. -DTHREADSAFE=ON"
     build_command: "cmake --build ."
     branch_pattern: coverity_scan
@@ -47,8 +47,7 @@ install:
   - sudo apt-get -qq install cmake libssh2-1-dev openssh-client openssh-server
 
 # Run the Build script and tests
-script:
-  - script/cibuild.sh
+script: if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then script/cibuild.sh ; fi
 
 # Run Tests
 after_success:
