@@ -21,7 +21,7 @@ addons:
     project:
       name: "aceofspades/libgit2"
       description: "Your project description here"
-    notification_email: "scan-admin@coverity.com"
+    #notification_email: "scan-admin@coverity.com"
     build_command_prepend: "mkdir -p _build && cd _build && cmake .. -DTHREADSAFE=ON"
     build_command: "cmake --build ."
     branch_pattern: coverity_scan
