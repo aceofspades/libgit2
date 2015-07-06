@@ -20,7 +20,7 @@ addons:
     build_script_url: https://gist.githubusercontent.com/aceofspades/4bd0dd25f2cbfde5093c/raw
     project:
       name: "aceofspades/libgit2"
-      description: "Your project description here 2"
+      description: "Your project description here 3"
     #notification_email: "scan-admin@coverity.com"
     build_command_prepend: "mkdir -p _build && cd _build && cmake .. -DTHREADSAFE=ON"
     build_command: "cmake --build ."
