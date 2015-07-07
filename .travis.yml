@@ -17,7 +17,6 @@ env:
 
 addons:
   coverity_scan:
-    build_script_url: https://gist.githubusercontent.com/aceofspades/4bd0dd25f2cbfde5093c/raw
     project:
       name: "aceofspades/libgit2"
       description: "Your project description here 4"
